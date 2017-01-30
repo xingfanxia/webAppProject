@@ -11,14 +11,15 @@ import flask
 import json
 import sys
 
-app = flask.Flask(__name__)
+
+app = flask.Flask(__na                                                                me__)
 
 @app.route('/')
 def hello():
 	return 'Hello, Citizen of CS257.'
 	
-@app.route('/fancier/')
-def itDoesHTML():
+@app.route('/Search/')
+def getAllAttributes():
 	htmlStr = '<html lang="en">' + \
 			  '<head>' + \
 			  '  <title>Cool page</title>' + \
