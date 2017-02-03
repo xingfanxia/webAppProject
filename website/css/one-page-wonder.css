@@ -180,8 +180,23 @@ footer {
     }
 }
 
-div#searchBarCon {
-    margin-top: 30px;
-    width: 80%;
+.navbar-inverse .navbar-nav>.active>a, 
+.navbar-inverse .navbar-nav>.active>a:focus, 
+.navbar-inverse .navbar-nav>.active>a:hover {
+    background-color: #a52d2d;
 }
+
+// .nav > li{
+//     width: 100px;
+// }
+
+div.input-group {
+    margin-top: 15px;
+    width: 100%;
+}
+
+#compareButton {
+    margin-top: 10px;
+}
+
 
