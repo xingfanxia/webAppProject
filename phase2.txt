@@ -6,6 +6,9 @@
 
 Api.py: The main python fuction file that handles quires from the users
 
+testcases/api_tests.py: the tests for api.py, if it cannot autorun by pyCharm, please run it thru
+terminal like: python api_test.py
+
 Player.py: A class file of the player class.
 
 Website/index.html : Main index page that is used as a interface for the user.
@@ -15,3 +18,5 @@ Website/css : A folder for the css files for the index.html
 Website/fonts : A folder for the fonts that have been used in index.html
 
 Website/js : A folder for the javascipts that have been used in index.html
+
+The thacker directory is under /var/www/html/cs257/xiax
