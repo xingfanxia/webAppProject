@@ -7,24 +7,24 @@
 import math, flask, sys, json, jinja2, psycopg2, getpass
 from flask import render_template, request
 
-# link to database
-database = getpass.getuser()
-user = getpass.getuser()
-password = getpass.getpass('Enter PostgreSQL password for user {}: '.format(user))
+# # link to database
+# database = getpass.getuser()
+# user = getpass.getuser()
+# password = getpass.getpass('Enter PostgreSQL password for user {}: '.format(user))
 
-# Login to the database
-try:
-    connection = psycopg2.connect(database=database, user=user, password=password)
-except Exception as e:
-    print(e)
-    exit() 
+# # Login to the database
+# try:
+#     connection = psycopg2.connect(database=database, user=user, password=password)
+# except Exception as e:
+#     print(e)
+#     exit() 
 
-try:
-    cur = connection.cursor()
-except Exception as e:
-    print('Cursor error: {}'.format(e))
-    connection.close()
-    exit()
+# try:
+#     cur = connection.cursor()
+# except Exception as e:
+#     print('Cursor error: {}'.format(e))
+#     connection.close()
+#     exit()
 
 app = flask.Flask(__name__)
 
@@ -32,7 +32,7 @@ def getAllPlayer():
 	# return entire database as a list
 	findAllPlayer = "SELECT * FROM players;"
 	cur.execute(findAllPlayer)
-	allplayer = cur.fetchone()
+	allplayer = cur.fetchall()
 	return allplayer
 
 @app.route('/Search/Player/<Name>')
@@ -41,8 +41,9 @@ def getAllAttributes(player):
 	'''player.printAllattributes()
 	'''
 	Findplayer = "SELECT * FROM players WHERE name = (Name) VALUES (%s);"
-	cur.execute(Findplayer1)
-	player = cur.fetchone()
+	data = (str(player),)
+	cur.execute(Findplayer,data)
+	player = cur.fetchall()
 	return player
 
 
@@ -82,7 +83,7 @@ def CalculateCos(N, vector1, vector2):
 	# This function is used to find the difference of two players using the Cos Theory
 	# It calculates the Cos vaule of the angle between N-dimision two vector made by player attributes
 	# and turn a number
-	'''for attr1 in vector1:
+	for attr1 in vector1:
 		for attr2 in vector2:
 		dotProduct += attr1*attr2
 	for attr1 in vector1:
@@ -92,14 +93,20 @@ def CalculateCos(N, vector1, vector2):
 		vectorLen2 += attr2*attr2
 	vectorLength2 = math.sqrt(vectorLen2)
 	cosV1V2 = dotProduct / (vectorLength1*vectorLength2)
-	return cosV1V2'''
-	return 0
+	return cosV1V2
 
 
-@app.route('/AdvancedSearch/name')
-def AdvancedSearch(name):
+@app.route('/AdvancedSearch/？name = Name')
+def AdvancedSearch(search,key):
 	# using keywords such as name,age, attribute to form a Sql quiry that
 	# search the database and return list of results.
+	Findplayer = "SELECT * FROM players WHERE (search) = (keyword) VALUES (%s, %s);"
+	searchWord = (str(search),)
+	keyword = (str(key),)
+	cur.execute(Findplayer, searchWord, keyword)
+	player = cur.fetchall()
+	
+	return player	
 	'''name = request.args.get(Name)
 	age = request.args.get(Age)
 	attribute = request.args.get(Attribute)
