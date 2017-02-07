@@ -4,12 +4,9 @@
 	3. Similar player suggestion
 	4. Get player attributes
 	'''
-import math
-import flask
+import math, flask, sys, json, jinja2, psycopg2, getpass
 from flask import render_template, request
-import json
-import sys
-import jinja2
+
 
 app = flask.Flask(__name__)
 
