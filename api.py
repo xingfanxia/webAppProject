@@ -50,16 +50,16 @@ def similarPlayer(player):
 	playerList = getAllPlayer()
 	playerAttr = getAllAttributes(player)
 	differenceDictionary = dict()
-		for ComparePlayer in playerList:
-			angle = CalculateCos(playerAttr[3:],ComparePlayer[3:])
-			differenceDictionary[angle] = ComparePlayer[1]
-		sortedDictionary = sorted(differenceDictionary.keys())
-		# The most similar player should be this player itself, so we choose the second player as the start to print.
-		print(differenceDictionary[sortedDictionary[1]])
-		print(differenceDictionary[sortedDictionary[2]])
-		print(differenceDictionary[sortedDictionary[3]])
-		for i in range(0,3,1):
-			similarList.append(differenceDictionary[sortedDictionary[i]])
+	for ComparePlayer in playerList:
+		angle = CalculateCos(playerAttr[3:],ComparePlayer[3:])
+		differenceDictionary[angle] = ComparePlayer[1]
+	sortedDictionary = sorted(differenceDictionary.keys())
+	# The most similar player should be this player itself, so we choose the second player as the start to print.
+	print(differenceDictionary[sortedDictionary[1]])
+	print(differenceDictionary[sortedDictionary[2]])
+	print(differenceDictionary[sortedDictionary[3]])
+	for i in range(0,3,1):
+		similarList.append(differenceDictionary[sortedDictionary[i]])
 	return similarList
 
 
