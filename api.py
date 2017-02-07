@@ -14,7 +14,7 @@ import jinja2
 app = flask.Flask(__name__)
 
 def getAllPlayer():
-    # return entire database as a list
+	# return entire database as a list
 	findAllPlayer = "SELECT * FROM players;"
 	cur.execute(findAllPlayer)
 	allplayer = cur.fetchone()
@@ -47,7 +47,7 @@ def compareDifference(Player1, Player2):
 def similarPlayer(player):
 	# return a list player objects that have similar attributes with given player
 	playerList = getAllPlayer()
-    playerAttr = getAllAttributes(player)
+	playerAttr = getAllAttributes(player)
 	differenceDictionary = dict()
 		for ComparePlayer in playerList:
 			angle = CalculateCos(playerAttr[3:]),ComparePlayer[3:])
