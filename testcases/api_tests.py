@@ -1,4 +1,4 @@
-import unittest, os.path, sys
+import unittest, os.path, sys, psycopg2, getpass
 sys.path.append(os.path.join(os.path.dirname(os.path.realpath(__file__)), os.pardir))
 import api
 from unittest import TestCase
