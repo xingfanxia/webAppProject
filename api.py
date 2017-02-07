@@ -13,48 +13,61 @@ import jinja2
 
 app = flask.Flask(__name__)
 
+def getAllPlayer():
+    # return entire database as a list
+	findAllPlayer = "SELECT * FROM players;"
+	cur.execute(findAllPlayer)
+	allplayer = cur.fetchone()
+	return allplayer
+
 @app.route('/Search/Player/<Name>')
 def getAllAttributes(player):
-    # return a list of search result for a specific player, such as name, age, ability...
-    '''player.printAllattributes()
+	# return a list of search result for a specific player, such as name, age, ability...
+	'''player.printAllattributes()
 	'''
-
-    return []
+	Findplayer = "SELECT * FROM players WHERE name = (Name) VALUES (%s);"
+	cur.execute(Findplayer1)
+	player = cur.fetchone()
+	return player
 
 
 @app.route('/Search/Compare/<Player1>/<Player2>')
 def compareDifference(Player1, Player2):
-    # return a list of the difference between two player, such as age, ability...
-    # using Player1 attribute - Player2 attribute
-    '''difference = []
-	for attr1 in Player1.getPhysicalAttribute():
-		for attr2 in Player2.getPhysicalAttribute():
-			difference.append(attr1-attr2)
+	# return a list of the difference between two player, such as age, ability...
+	# using Player1 attribute - Player2 attribute
+	difference = []
+	Attr1 = getAllAttributes(Player1)
+	Attr2 = getAllAttributes(Player2)
+	for i in range(3, len(Attr1), 1):
+		difference.append(Attr1[i] - Attr2[i])
 	return difference
-	'''
-    return []
 
 
 @app.route('/Search/Similar/<Player>')
-def similarPlayer(player, playerList):
-    # return a list player objects that have similar attributes with given player
-    '''standardDeviationDictionary = dict()
+def similarPlayer(player):
+	# return a list player objects that have similar attributes with given player
+	playerList = getAllPlayer()
+    playerAttr = getAllAttributes(player)
+	differenceDictionary = dict()
 		for ComparePlayer in playerList:
-			angle = CalculateCos(player.getAllAttributes(),ComparePlayer.getAllAttributes())
-			standardDeviationDictionary[angle] = ComparePlayer.getName()
-		sortedDictionary = sorted(standardDeviationDictionary.keys())
+			angle = CalculateCos(playerAttr[3:]),ComparePlayer[3:])
+			name = ComparePlayer[0]+ComparePlayer[1]
+			differenceDictionary[angle] = name
+		sortedDictionary = sorted(differenceDictionary.keys())
 		# The most similar player should be this player itself, so we choose the second player as the start to print.
-		print(standardDeviationDictionary[sortedDictionary[1]])
-		print(standardDeviationDictionary[sortedDictionary[2]])
-		print(standardDeviationDictionary[sortedDictionary[3]])'''
-    return []
+		print(differenceDictionary[sortedDictionary[1]])
+		print(differenceDictionary[sortedDictionary[2]])
+		print(differenceDictionary[sortedDictionary[3]])
+		for i in range(0,3,1):
+			similarList = [differenceDictionary[sortedDictionary[i]]
+	return similarList
 
 
 def CalculateCos(N, vector1, vector2):
-    # This function is used to find the difference of two players using the Cos Theory
-    # It calculates the Cos vaule of the angle between N-dimision two vector made by player attributes
-    # and turn a number
-    '''for attr1 in vector1:
+	# This function is used to find the difference of two players using the Cos Theory
+	# It calculates the Cos vaule of the angle between N-dimision two vector made by player attributes
+	# and turn a number
+	'''for attr1 in vector1:
 		for attr2 in vector2:
 		dotProduct += attr1*attr2
 	for attr1 in vector1:
@@ -65,15 +78,15 @@ def CalculateCos(N, vector1, vector2):
 	vectorLength2 = math.sqrt(vectorLen2)
 	cosV1V2 = dotProduct / (vectorLength1*vectorLength2)
 	return cosV1V2'''
-    return 0
+	return 0
 
 
 @app.route('/AdvancedSearch/name')
 def AdvancedSearch(name):
-    # using keywords such as name,age, attribute to form a Sql quiry that
-    # search the database and return list of results.
-    '''name = request.args.get(Name)
+	# using keywords such as name,age, attribute to form a Sql quiry that
+	# search the database and return list of results.
+	'''name = request.args.get(Name)
 	age = request.args.get(Age)
 	attribute = request.args.get(Attribute)
 	sql = "Select * , From database, where NAME = name, Age = age, Attribute = attribute"'''
-    return []
+	return []

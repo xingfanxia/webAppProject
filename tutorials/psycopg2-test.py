@@ -42,7 +42,7 @@ except Exception as e:
 try:
     cursor = connection.cursor()
     query = 'SELECT quakedate, quaketime, mag, latitude, longitude, place  FROM earthquakes WHERE mag>7 ORDER BY mag DESC'
-    cursor.execute(query)
+    cursor.execute(que
 except Exception as e:
     print('Cursor error: {}'.format(e))
     connection.close()
