@@ -1,4 +1,4 @@
-import api
+from .. import api
 import unittest
 from unittest import TestCase
 
