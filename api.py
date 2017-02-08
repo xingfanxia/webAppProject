@@ -7,24 +7,24 @@
 import math, flask, sys, json, jinja2, psycopg2, getpass
 from flask import render_template, request
 
-# link to database
-database = getpass.getuser()
-user = getpass.getuser()
-password = getpass.getpass('Enter PostgreSQL password for user {}: '.format(user))
+# # link to database
+# database = getpass.getuser()
+# user = getpass.getuser()
+# password = getpass.getpass('Enter PostgreSQL password for user {}: '.format(user))
 
-# Login to the database
-try:
-	connection = psycopg2.connect(database=database, user=user, password=password)
-except Exception as e:
-	print(e)
-	exit() 
+# # Login to the database
+# try:
+# 	connection = psycopg2.connect(database=database, user=user, password=password)
+# except Exception as e:
+# 	print(e)
+# 	exit() 
 
-try:
-	cur = connection.cursor()
-except Exception as e:
-	print('Cursor error: {}'.format(e))
-	connection.close()
-	exit()
+# try:
+# 	cur = connection.cursor()
+# except Exception as e:
+# 	print('Cursor error: {}'.format(e))
+# 	connection.close()
+# 	exit()
 
 app = flask.Flask(__name__)
 
@@ -96,9 +96,8 @@ def CalculateCos(N, vector1, vector2):
 	dotProduct = 0
 	vectorLen1 = 0
 	vectorLen2 = 0
-	for attr1 in vector1:
-		for attr2 in vector2:
-			dotProduct += attr1*attr2
+	for i in range(0,len(vector1),1):
+		dotProduct += vector1[i]*vector2[i]
 	for attr1 in vector1:
 		vectorLen1 += attr1*attr1
 	vectorLength1 = math.sqrt(vectorLen1)
@@ -107,7 +106,6 @@ def CalculateCos(N, vector1, vector2):
 	vectorLength2 = math.sqrt(vectorLen2)
 	cosV1V2 = dotProduct / (vectorLength1*vectorLength2)
 	return cosV1V2
-
 
 # @app.route('/AdvancedSearch/')
 # def AdvancedSearch():
@@ -120,8 +118,8 @@ def CalculateCos(N, vector1, vector2):
 # 		keyword = (str(key),)
 # 		cur.execute(Findplayer, searchWord, keyword)
 # 		player = cur.fetchall()
-# 	return player	
-	'''name = request.args.get(Name)
-	age = request.args.get(Age)
-	attribute = request.args.get(Attribute)
-	sql = "Select * , From database, where NAME = name, Age = age, Attribute = attribute"'''
+# # 	return player	
+# 	name = request.args.get(Name)
+# 	age = request.args.get(Age)
+# 	attribute = request.args.get(Attribute)
+# 	sql = "Select * , From database, where NAME = name, Age = age, Attribute = attribute"
