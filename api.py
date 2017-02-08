@@ -74,10 +74,10 @@ def similarPlayer(player):
 	similarList = [];
 	# return a list player objects that have similar attributes with given player
 	playerList = getAllPlayer()
-	print(playerList)
 	playerAttr = getAllAttributes(player)
 	differenceDictionary = dict()
 	for ComparePlayer in playerList:
+		print(ComparePlayer[3:])
 		angle = CalculateCos(9, playerAttr[3:],ComparePlayer[3:])
 		differenceDictionary[angle] = ComparePlayer[1]
 	result = list(differenceDictionary.keys())
