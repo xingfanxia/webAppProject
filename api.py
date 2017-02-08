@@ -87,7 +87,23 @@ def similarPlayer(player):
 	for i in range(0,3,1):
 		similarList.append(differenceDictionary[sortedDictionary[i]])
 	return similarList
-
+# def similarPlayer(player):
+# 	similarList = [];
+# 	# return a list player objects that have similar attributes with given player
+# 	playerList = [[1,1,3,9,4,5,6,4,3,2,1,6],[1,2,3,5,4,5,6,4,3,2,1,6],[1,3,3,6,4,5,6,4,3,2,1,6],[1,3,3,0,4,5,6,4,3,2,1,6]]
+# 	playerAttr = [1,1,3,9,4,5,6,4,3,2,1,6]
+# 	differenceDictionary = dict()
+# 	for ComparePlayer in playerList:
+# 		angle = CalculateCos(9, playerAttr[3:],ComparePlayer[3:])
+# 		differenceDictionary[angle] = ComparePlayer[1]
+# 	sortedDictionary = sorted(differenceDictionary.keys())
+# 	# The most similar player should be this player itself, so we choose the second player as the start to print.
+# 	print(differenceDictionary[sortedDictionary[1]])
+# 	print(differenceDictionary[sortedDictionary[2]])
+# 	print(differenceDictionary[sortedDictionary[3]])
+# 	for i in range(0,3,1):
+# 		similarList.append(differenceDictionary[sortedDictionary[i]])
+# 	return similarList
 
 def CalculateCos(N, vector1, vector2):
 	# This function is used to find the difference of two players using the Cos Theory
@@ -104,9 +120,13 @@ def CalculateCos(N, vector1, vector2):
 	for attr2 in vector2:
 		vectorLen2 += attr2*attr2
 	vectorLength2 = math.sqrt(vectorLen2)
+	if vectorLength1*vectorLength2 == 0:
+		return 99
 	cosV1V2 = dotProduct / (vectorLength1*vectorLength2)
 	return cosV1V2
-
+# def main():
+# 	similarPlayer(123)
+# main()
 # @app.route('/AdvancedSearch/')
 # def AdvancedSearch():
 # 	# using keywords such as name,age, attribute to form a Sql quiry that
