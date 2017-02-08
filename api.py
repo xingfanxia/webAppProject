@@ -95,7 +95,7 @@ def CalculateCos(N, vector1, vector2):
 	# and turn a number
 	for attr1 in vector1:
 		for attr2 in vector2:
-		dotProduct += attr1*attr2
+			dotProduct += attr1*attr2
 	for attr1 in vector1:
 		vectorLen1 += attr1*attr1
 	vectorLength1 = math.sqrt(vectorLen1)
