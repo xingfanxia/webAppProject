@@ -46,7 +46,7 @@ def getAllAttributes(Name):
 	'''player.printAllattributes()
 	'''
 	try:
-		findPlayer = "SELECT * FROM players WHERE name = (Name) VALUES (%s);"
+		findPlayer = "SELECT * FROM players WHERE name = (%s);"
 		data = (str(Name),)
 		cur.execute(findPlayer,data)
 		player = cur.fetchall()
