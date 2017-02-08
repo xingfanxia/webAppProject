@@ -120,10 +120,11 @@ def CalculateCos(N, vector1, vector2):
 	for attr1 in vector1:
 		vectorLen1 += attr1*attr1
 	vectorLength1 = math.sqrt(vectorLen1)
+	print(vectorLength1)
 	for attr2 in vector2:
 		vectorLen2 += attr2*attr2
 	vectorLength2 = math.sqrt(vectorLen2)
-	print(vectorLength1,vectorLength2,vectorLength2*vectorLength1)
+	# print(vectorLength1,vectorLength2,vectorLength2*vectorLength1)
 	if vectorLength1*vectorLength2 == 0:
 		return 99
 	cosV1V2 = dotProduct / (vectorLength1*vectorLength2)
