@@ -7,43 +7,53 @@
 import math, flask, sys, json, jinja2, psycopg2, getpass
 from flask import render_template, request
 
-# # link to database
-# database = getpass.getuser()
-# user = getpass.getuser()
-# password = getpass.getpass('Enter PostgreSQL password for user {}: '.format(user))
+# link to database
+database = getpass.getuser()
+user = getpass.getuser()
+password = getpass.getpass('Enter PostgreSQL password for user {}: '.format(user))
 
-# # Login to the database
-# try:
-#     connection = psycopg2.connect(database=database, user=user, password=password)
-# except Exception as e:
-#     print(e)
-#     exit() 
+# Login to the database
+try:
+    connection = psycopg2.connect(database=database, user=user, password=password)
+except Exception as e:
+    print(e)
+    exit() 
 
-# try:
-#     cur = connection.cursor()
-# except Exception as e:
-#     print('Cursor error: {}'.format(e))
-#     connection.close()
-#     exit()
+try:
+    cur = connection.cursor()
+except Exception as e:
+    print('Cursor error: {}'.format(e))
+    connection.close()
+    exit()
 
 app = flask.Flask(__name__)
 
 def getAllPlayer():
 	# return entire database as a list
-	findAllPlayer = "SELECT * FROM players;"
-	cur.execute(findAllPlayer)
-	allplayer = cur.fetchall()
+	try:
+		findAllPlayer = "SELECT * FROM players;"
+		cur.execute(findAllPlayer)
+		allplayer = cur.fetchall()
+	except Exception as e:
+    	print('Cursor error: {}'.format(e))
+    	connection.close()
+    	exit()
 	return allplayer
 
 @app.route('/Search/Player/<Name>')
-def getAllAttributes(player):
+def getAllAttributes(Name):
 	# return a list of search result for a specific player, such as name, age, ability...
 	'''player.printAllattributes()
 	'''
-	Findplayer = "SELECT * FROM players WHERE name = (Name) VALUES (%s);"
-	data = (str(player),)
-	cur.execute(Findplayer,data)
-	player = cur.fetchall()
+	try:
+		findPlayer = "SELECT * FROM players WHERE name = (Name) VALUES (%s);"
+		data = (str(Name),)
+		cur.execute(findPlayer,data)
+		player = cur.fetchall()
+	except Exception as e:
+    	print('Cursor error: {}'.format(e))
+    	connection.close()
+    	exit()
 	return player
 
 
@@ -96,19 +106,19 @@ def CalculateCos(N, vector1, vector2):
 	return cosV1V2
 
 
-@app.route('/AdvancedSearch/？name = Name')
-def AdvancedSearch(search,key):
+@app.route('/AdvancedSearch/')
+def AdvancedSearch():
 	# using keywords such as name,age, attribute to form a Sql quiry that
 	# search the database and return list of results.
-	Findplayer = "SELECT * FROM players WHERE (search) = (keyword) VALUES (%s, %s);"
-	searchWord = (str(search),)
-	keyword = (str(key),)
-	cur.execute(Findplayer, searchWord, keyword)
-	player = cur.fetchall()
-	
+	sqlSearch = list(flask.request.args)
+	for item in sqlSearch
+		Findplayer = "SELECT * FROM players WHERE (search) = (keyword) VALUES (%s, %s);"
+		searchWord = (str(search),)
+		keyword = (str(key),)
+		cur.execute(Findplayer, searchWord, keyword)
+		player = cur.fetchall()
 	return player	
 	'''name = request.args.get(Name)
 	age = request.args.get(Age)
 	attribute = request.args.get(Attribute)
 	sql = "Select * , From database, where NAME = name, Age = age, Attribute = attribute"'''
-	return []
