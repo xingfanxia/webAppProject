@@ -71,7 +71,7 @@ def compareDifference(Player1, Player2):
 
 @app.route('/Search/Similar/<Player>')
 def similarPlayer(player):
-	similarList = [];
+	similarList = []
 	# return a list player objects that have similar attributes with given player
 	playerList = getAllPlayer()
 	playerAttr = getAllAttributes(player)
