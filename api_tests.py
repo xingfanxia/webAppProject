@@ -6,19 +6,21 @@ from unittest import TestCase
 
 # This is a API tester Class that will check the functionality of all the function in api.py
 class apiTester(TestCase):
-    def testGetAllPlayer(self):
-        print(api.getAllPlayer())
-        self.assertFasle(api.getAllAttributes() == [])
+    # def testGetAllPlayer(self):
+    #     print(api.getAllPlayer())
+    #     self.assertTrue(api.getAllAttributes() != [])
 
     def testGetAllAttributes(self):
         print(api.getAllAttributes("Cristiano Ronaldo"))
-        self.assertFalse(api.getAllAttributes("Cristiano Ronaldo") == [])
+        self.assertTrue(api.getAllAttributes("Cristiano Ronaldo") != [])
 
     def testCompareDifference(self):
         player1 = [10, 10]
         player2 = [20, 20]
         self.assertTrue(api.compareDifference(player1, player2) == [])
-
+    def testSimilarPlayer(self):
+        player = "Cristiano Ronaldo"
+        self.assertTrue(api.similarPlayer(player) != [])
     def testCalculateCos(self):
         player1 = [10, 10]
         player2 = [20, 20]
