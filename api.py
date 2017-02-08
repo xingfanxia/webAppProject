@@ -87,7 +87,7 @@ def similarPlayer(player):
 	# print(differenceDictionary[sortedDictionary[1]])
 	# print(differenceDictionary[sortedDictionary[2]])
 	# print(differenceDictionary[sortedDictionary[3]])
-	# similarList = []
+	similarList = []
 	# for i in range(0,3,1):
 	# 	similarList.append(differenceDictionary[sortedDictionary[i]])
 	return similarList
