@@ -14,17 +14,17 @@ password = getpass.getpass('Enter PostgreSQL password for user {}: '.format(user
 
 # Login to the database
 try:
-    connection = psycopg2.connect(database=database, user=user, password=password)
+	connection = psycopg2.connect(database=database, user=user, password=password)
 except Exception as e:
-    print(e)
-    exit() 
+	print(e)
+	exit() 
 
 try:
-    cur = connection.cursor()
+	cur = connection.cursor()
 except Exception as e:
-    print('Cursor error: {}'.format(e))
-    connection.close()
-    exit()
+	print('Cursor error: {}'.format(e))
+	connection.close()
+	exit()
 
 app = flask.Flask(__name__)
 
@@ -35,9 +35,9 @@ def getAllPlayer():
 		cur.execute(findAllPlayer)
 		allplayer = cur.fetchall()
 	except Exception as e:
-    	print('Cursor error: {}'.format(e))
-    	connection.close()
-    	exit()
+		print('Cursor error: {}'.format(e))
+		connection.close()
+		exit()
 	return allplayer
 
 @app.route('/Search/Player/<Name>')
@@ -51,9 +51,9 @@ def getAllAttributes(Name):
 		cur.execute(findPlayer,data)
 		player = cur.fetchall()
 	except Exception as e:
-    	print('Cursor error: {}'.format(e))
-    	connection.close()
-    	exit()
+		print('Cursor error: {}'.format(e))
+		connection.close()
+		exit()
 	return player
 
 
