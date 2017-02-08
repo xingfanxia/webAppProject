@@ -71,7 +71,6 @@ def compareDifference(Player1, Player2):
 
 @app.route('/Search/Similar/<Player>')
 def similarPlayer(player):
-	similarList = []
 	# return a list player objects that have similar attributes with given player
 	playerList = getAllPlayer()
 	playerAttr = getAllAttributes(player)
@@ -88,6 +87,7 @@ def similarPlayer(player):
 	# print(differenceDictionary[sortedDictionary[1]])
 	# print(differenceDictionary[sortedDictionary[2]])
 	# print(differenceDictionary[sortedDictionary[3]])
+	similarList = []
 	for i in range(0,3,1):
 		similarList.append(differenceDictionary[sortedDictionary[i]])
 	return similarList
