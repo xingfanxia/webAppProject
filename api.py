@@ -112,7 +112,6 @@ def CalculateCos(N, vector1, vector2):
 	# This function is used to find the difference of two players using the Cos Theory
 	# It calculates the Cos vaule of the angle between N-dimision two vector made by player attributes
 	# and turn a number
-	print(vector2)
 	dotProduct = 0
 	vectorLen1 = 0
 	vectorLen2 = 0
@@ -123,6 +122,7 @@ def CalculateCos(N, vector1, vector2):
 	vectorLength1 = math.sqrt(vectorLen1)
 	for attr2 in vector2:
 		vectorLen2 += attr2*attr2
+		print(vectorLen2)
 	vectorLength2 = math.sqrt(vectorLen2)
 	if vectorLength1*vectorLength2 == 0:
 		return 99
