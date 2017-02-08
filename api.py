@@ -93,6 +93,9 @@ def CalculateCos(N, vector1, vector2):
 	# This function is used to find the difference of two players using the Cos Theory
 	# It calculates the Cos vaule of the angle between N-dimision two vector made by player attributes
 	# and turn a number
+	dotProduct = 0
+	vectorLen1 = 0
+	vectorLen2 = 0
 	for attr1 in vector1:
 		for attr2 in vector2:
 			dotProduct += attr1*attr2
