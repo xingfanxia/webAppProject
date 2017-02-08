@@ -106,18 +106,18 @@ def CalculateCos(N, vector1, vector2):
 	return cosV1V2
 
 
-@app.route('/AdvancedSearch/')
-def AdvancedSearch():
-	# using keywords such as name,age, attribute to form a Sql quiry that
-	# search the database and return list of results.
-	sqlSearch = list(flask.request.args)
-	for item in sqlSearch
-		Findplayer = "SELECT * FROM players WHERE (search) = (keyword) VALUES (%s, %s);"
-		searchWord = (str(search),)
-		keyword = (str(key),)
-		cur.execute(Findplayer, searchWord, keyword)
-		player = cur.fetchall()
-	return player	
+# @app.route('/AdvancedSearch/')
+# def AdvancedSearch():
+# 	# using keywords such as name,age, attribute to form a Sql quiry that
+# 	# search the database and return list of results.
+# 	sqlSearch = list(flask.request.args)
+# 	for item in sqlSearch：
+# 		Findplayer = "SELECT * FROM players WHERE (search) = (keyword) VALUES (%s, %s);"
+# 		searchWord = (str(search),)
+# 		keyword = (str(key),)
+# 		cur.execute(Findplayer, searchWord, keyword)
+# 		player = cur.fetchall()
+# 	return player	
 	'''name = request.args.get(Name)
 	age = request.args.get(Age)
 	attribute = request.args.get(Attribute)
