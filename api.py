@@ -77,7 +77,7 @@ def similarPlayer(player):
 	playerAttr = getAllAttributes(player)
 	differenceDictionary = dict()
 	for ComparePlayer in playerList:
-		angle = CalculateCos(playerAttr[3:],ComparePlayer[3:])
+		angle = CalculateCos(9, playerAttr[3:],ComparePlayer[3:])
 		differenceDictionary[angle] = ComparePlayer[1]
 	sortedDictionary = sorted(differenceDictionary.keys())
 	# The most similar player should be this player itself, so we choose the second player as the start to print.
