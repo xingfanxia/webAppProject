@@ -75,6 +75,7 @@ def similarPlayer(player):
 	# return a list player objects that have similar attributes with given player
 	playerList = getAllPlayer()
 	playerAttr = getAllAttributes(player)
+	print(playerAttr[3:])
 	differenceDictionary = dict()
 	for ComparePlayer in playerList:
 		angle = CalculateCos(9, playerAttr[3:],ComparePlayer[3:])
@@ -112,7 +113,6 @@ def CalculateCos(N, vector1, vector2):
 	# This function is used to find the difference of two players using the Cos Theory
 	# It calculates the Cos vaule of the angle between N-dimision two vector made by player attributes
 	# and turn a number
-	print(vector1)
 	dotProduct = 0
 	vectorLen1 = 0
 	vectorLen2 = 0

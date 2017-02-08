@@ -19,8 +19,7 @@ class apiTester(TestCase):
         player2 = [20, 20]
         self.assertTrue(api.compareDifference(player1, player2) == [])
     def testSimilarPlayer(self):
-        player = "Cristiano Ronaldo"
-        self.assertTrue(api.similarPlayer(player) != [])
+        self.assertTrue(api.similarPlayer("Cristiano Ronaldo") != [])
     def testCalculateCos(self):
         player1 = [10, 10]
         player2 = [20, 20]
