@@ -32,7 +32,7 @@ password = getpass.getpass('Enter PostgreSQL password for user {}: '.format(user
 
 # Login to the database
 try:
-    connection = psycopg2.connect(database=database, user=user, password=password)
+    connection = psycopg2.connect(database=database, user=user, password='moon329tiger')
 except Exception as e:
     print(e)
     exit()
@@ -42,7 +42,7 @@ except Exception as e:
 try:
     cursor = connection.cursor()
     query = 'SELECT quakedate, quaketime, mag, latitude, longitude, place  FROM earthquakes WHERE mag>7 ORDER BY mag DESC'
-    cursor.execute(que
+    cursor.execute(que）
 except Exception as e:
     print('Cursor error: {}'.format(e))
     connection.close()
