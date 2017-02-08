@@ -78,8 +78,8 @@ def similarPlayer(player):
 	differenceDictionary = dict()
 	for ComparePlayer in playerList:
 		angle = CalculateCos(9, playerAttr[3:],ComparePlayer[3:])
-		differenceDictionary[angle] = ComparePlayer[1]
-		print(differenceDictionary[angle])
+		print(angle)
+		differenceDictionary[angle] = ComparePlayer[1]	
 	result = list(differenceDictionary.keys())
 	print(result)
 	sortedDictionary = result.sort()
