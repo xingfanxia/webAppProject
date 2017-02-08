@@ -84,9 +84,9 @@ def similarPlayer(player):
 	result.sort()
 	#print(sortedDictionary)
 	# The most similar player should be this player itself, so we choose the second player as the start to print.
-	print(differenceDictionary[result[1]])
-	print(differenceDictionary[result[2]])
-	print(differenceDictionary[result[3]])
+	print(differenceDictionary[result[-1]])
+	print(differenceDictionary[result[-2]])
+	print(differenceDictionary[result[-3]])
 	similarList = []
 	for i in range(0,3,1):
 		similarList.append(differenceDictionary[result[i]])
