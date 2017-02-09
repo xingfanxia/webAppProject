@@ -2,14 +2,12 @@
 
 #### Xingfan Xia and Kaixin Wu
 
-### Phase 2 Documentation:
+### Phase 3 Documentation:
 
 Api.py: The main python fuction file that handles quires from the users
 
 testcases/api_tests.py: the tests for api.py, if it cannot autorun by pyCharm, please run it thru
 terminal like: python api_test.py
-
-Player.py: A class file of the player class.
 
 Website/index.html : Main index page that is used as a interface for the user.
 

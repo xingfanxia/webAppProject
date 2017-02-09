@@ -17,16 +17,16 @@ class apiTester(TestCase):
     def testCompareDifference(self):
         player1 = [10, 10]
         player2 = [20, 20]
-        self.assertTrue(api.compareDifference(player1, player2) == [])
+        self.assertTrue(api.compareDifference(player1, player2) != [])
     def testSimilarPlayer(self):
         self.assertTrue(api.similarPlayer("Cristiano Ronaldo") != [])
     def testCalculateCos(self):
         player1 = [10, 10]
         player2 = [20, 20]
-        self.assertTrue(api.CalculateCos(9, player1, player2) == 0)
+        self.assertTrue(api.CalculateCos(2, player1, player2) != 0)
 
     def testAdvancedSearch(self):
-        self.assertTrue(api.AdvancedSearch("Meiss") == [])
+        self.assertTrue(api.AdvancedSearch("age" , 30) != [])
 
 
 if __name__ == '__main__':

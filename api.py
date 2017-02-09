@@ -80,34 +80,16 @@ def similarPlayer(player):
 		angle = CalculateCos(9, playerAttr[0][3:],ComparePlayer[3:])
 		differenceDictionary[angle] = ComparePlayer[1]	
 	result = list(differenceDictionary.keys())
-	print(result)
 	result.sort()
-	#print(sortedDictionary)
 	# The most similar player should be this player itself, so we choose the second player as the start to print.
-	print(differenceDictionary[result[-1]])
 	print(differenceDictionary[result[-2]])
 	print(differenceDictionary[result[-3]])
+	print(differenceDictionary[result[-4]])
 	similarList = []
-	for i in range(0,3,1):
+	for i in range(-4,-1,1):
 		similarList.append(differenceDictionary[result[i]])
 	return similarList
-# def similarPlayer(player):
-# 	similarList = [];
-# 	# return a list player objects that have similar attributes with given player
-# 	playerList = [[1,1,3,9,4,5,6,4,3,2,1,6],[1,2,3,5,4,5,6,4,3,2,1,6],[1,3,3,6,4,5,6,4,3,2,1,6],[1,3,3,0,4,5,6,4,3,2,1,6]]
-# 	playerAttr = [1,1,3,9,4,5,6,4,3,2,1,6]
-# 	differenceDictionary = dict()
-# 	for ComparePlayer in playerList:
-# 		angle = CalculateCos(9, playerAttr[3:],ComparePlayer[3:])
-# 		differenceDictionary[angle] = ComparePlayer[1]
-# 	sortedDictionary = sorted(differenceDictionary.keys())
-# 	# The most similar player should be this player itself, so we choose the second player as the start to print.
-# 	print(differenceDictionary[sortedDictionary[1]])
-# 	print(differenceDictionary[sortedDictionary[2]])
-# 	print(differenceDictionary[sortedDictionary[3]])
-# 	for i in range(0,3,1):
-# 		similarList.append(differenceDictionary[sortedDictionary[i]])
-# 	return similarList
+ 
 
 def CalculateCos(N, vector1, vector2):
 	# This function is used to find the difference of two players using the Cos Theory
@@ -130,22 +112,19 @@ def CalculateCos(N, vector1, vector2):
 		return 99
 	cosV1V2 = dotProduct / (vectorLength1*vectorLength2)
 	return cosV1V2
-# def main():
-# 	similarPlayer(123)
-# main()
-# @app.route('/AdvancedSearch/')
-# def AdvancedSearch():
-# 	# using keywords such as name,age, attribute to form a Sql quiry that
-# 	# search the database and return list of results.
-# 	sqlSearch = list(flask.request.args)
-# 	for item in sqlSearch：
-# 		Findplayer = "SELECT * FROM players WHERE (search) = (keyword) VALUES (%s, %s);"
-# 		searchWord = (str(search),)
-# 		keyword = (str(key),)
-# 		cur.execute(Findplayer, searchWord, keyword)
-# 		player = cur.fetchall()
-# # 	return player	
-# 	name = request.args.get(Name)
-# 	age = request.args.get(Age)
-# 	attribute = request.args.get(Attribute)
-# 	sql = "Select * , From database, where NAME = name, Age = age, Attribute = attribute"
+
+@app.route('/AdvancedSearch/')
+def AdvancedSearch(search, key):
+	# using keywords such as name,age, attribute to form a Sql quiry that
+	# search the database and return list of results.
+	try:
+		findPlayer = "SELECT * FROM players WHERE (%s) = (%s);"
+		searchWord = (str(search),)
+		keyword = (str(key),)
+		cur.execute(findPlayer, searchWord, keyword)
+		player = cur.fetchall()
+	except Exception as e:
+		print('Cursor error: {}'.format(e))
+		connection.close()
+		exit()
+	return player[0]
