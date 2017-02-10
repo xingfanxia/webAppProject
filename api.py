@@ -121,10 +121,10 @@ def AdvancedSearch(search, key):
 		'stamina','strength', 'intercept', 'position', 'vision','attributes']
 	try:
 		if search in validCols:
-        	findPlayer = 'SELECT * FROM players WHERE ' + search + '=%s'
-    	else:
-        	print("Invalid column name")
-        	exit()
+			findPlayer = 'SELECT * FROM players WHERE ' + search + '=%s'
+		else:
+			print("Invalid column name")
+			exit()
 		keyword = (str(key),)
 		cur.execute(findPlayer, keyword)
 		player = cur.fetchall()
