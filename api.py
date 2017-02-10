@@ -7,24 +7,24 @@
 import math, flask, sys, json, jinja2, psycopg2, getpass
 from flask import render_template, request
 
-# link to database
-database = getpass.getuser()
-user = getpass.getuser()
-#password = getpass.getpass('Enter PostgreSQL password for user {}: '.format(user))
+# # link to database
+# database = getpass.getuser()
+# user = getpass.getuser()
+# #password = getpass.getpass('Enter PostgreSQL password for user {}: '.format(user))
 
-# Login to the database
-try:
-	connection = psycopg2.connect(database=database, user=user, password='moon329tiger')
-except Exception as e:
-	print(e)
-	exit() 
+# # Login to the database
+# try:
+# 	connection = psycopg2.connect(database=database, user=user, password='moon329tiger')
+# except Exception as e:
+# 	print(e)
+# 	exit() 
 
-try:
-	cur = connection.cursor()
-except Exception as e:
-	print('Cursor error: {}'.format(e))
-	connection.close()
-	exit()
+# try:
+# 	cur = connection.cursor()
+# except Exception as e:
+# 	print('Cursor error: {}'.format(e))
+# 	connection.close()
+# 	exit()
 
 app = flask.Flask(__name__)
 
@@ -117,11 +117,16 @@ def CalculateCos(N, vector1, vector2):
 def AdvancedSearch(search, key):
 	# using keywords such as name,age, attribute to form a Sql quiry that
 	# search the database and return list of results.
+	validCols = ['surname','name','age', 'accel', 'agility','react','balance',
+		'stamina','strength', 'intercept', 'position', 'vision','attributes']
 	try:
-		findPlayer = "SELECT * FROM players WHERE (%s) = (%s);"
-		searchWord = (str(search),)
+		if search in validCols:
+        	findPlayer = 'SELECT * FROM players WHERE ' + search + '=%s'
+    	else:
+        	print("Invalid column name")
+        	exit()
 		keyword = (str(key),)
-		cur.execute(findPlayer, searchWord, keyword)
+		cur.execute(findPlayer, keyword)
 		player = cur.fetchall()
 	except Exception as e:
 		print('Cursor error: {}'.format(e))
