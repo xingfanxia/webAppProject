@@ -24,7 +24,7 @@ class apiTester(TestCase):
 	def testCalculateCos(self):
 		player1 = [10, 10, 20, 30, 10, 20, 10, 40, 25]
 		player2 = [20, 20, 5, 10, 20, 30, 10, 20, 15]
-		print(api.CalculateCos(9, player1, player2)
+		print(api.CalculateCos(9, player1, player2))
 		self.assertTrue(api.CalculateCos(9, player1, player2) != 0)
 
 	# def testAdvancedSearch(self):
