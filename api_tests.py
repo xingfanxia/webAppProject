@@ -14,6 +14,7 @@ class apiTester(TestCase):
 		self.assertTrue(api.getAllAttributes("Cristiano Ronaldo") == result)
 
 	def testCompareDifference(self):
+		print(api.compareDifference("Cristiano Ronaldo","Pepe"))
 		self.assertTrue(api.compareDifference("Cristiano Ronaldo","Pepe") != [])
 
 	def testSimilarPlayer(self):
