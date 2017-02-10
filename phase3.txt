@@ -4,9 +4,9 @@
 
 ### Phase 3 Documentation:
 
-Api.py: The main python fuction file that handles quires from the users
+api.py: The main python fuction file that handles quires from the users
 
-testcases/api_tests.py: the tests for api.py, if it cannot autorun by pyCharm, please run it thru
+api_tests.py: the tests for api.py, if it cannot autorun by pyCharm, please run it thru
 terminal like: python api_test.py
 
 Website/index.html : Main index page that is used as a interface for the user.
