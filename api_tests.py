@@ -19,13 +19,14 @@ class apiTester(TestCase):
 
 	def testSimilarPlayer(self):
 		result = ["L. Suàrez", "M. Gabbiadini", "R. J_nsson"]
+		print(api.similarPlayer("Cristiano Ronaldo"))
 		self.assertTrue(api.similarPlayer("Cristiano Ronaldo") == result)
 
 	def testCalculateCos(self):
 		player1 = [10, 10, 20, 30, 10, 20, 10, 40, 25]
 		player2 = [20, 20, 5, 10, 20, 30, 10, 20, 15]
-		print(api.CalculateCos(9, player1, player2))
-		self.assertTrue(api.CalculateCos(9, player1, player2) != 0)
+		result = 0.804884909686284
+		self.assertTrue(api.CalculateCos(9, player1, player2) == result)
 
 	# def testAdvancedSearch(self):
 	# 	self.assertTrue(api.AdvancedSearch("age" , 30) != [])
