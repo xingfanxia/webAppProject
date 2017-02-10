@@ -7,7 +7,7 @@ from unittest import TestCase
 # This is a API tester Class that will check the functionality of all the function in api.py
 class apiTester(TestCase):
 	def testGetAllPlayer(self):
-	    self.assertTrue(api.testGetAllPlayer() != [])
+	    self.assertTrue(api.getAllPlayer() != [])
 
 	def testGetAllAttributes(self):
 		print(api.getAllAttributes("Cristiano Ronaldo"))
