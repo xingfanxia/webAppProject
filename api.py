@@ -115,23 +115,24 @@ def CalculateCos(N, vector1, vector2):
 	cosV1V2 = dotProduct / (vectorLength1*vectorLength2)
 	return cosV1V2
 
-@app.route('/AdvancedSearch/')
-def AdvancedSearch(search, key):
-	# using keywords such as name,age, attribute to form a Sql quiry that
-	# search the database and return list of results.
-	validCols = ['surname','name','age', 'accel', 'agility','react','balance',
-		'stamina','strength', 'intercept', 'position', 'vision','attributes']
-	try:
-		if search in validCols:
-			findPlayer = 'SELECT * FROM players WHERE ' + search + '=%s'
-		else:
-			print("Invalid column name")
-			exit()
-		keyword = (str(key),)
-		cur.execute(findPlayer, keyword)
-		player = cur.fetchall()
-	except Exception as e:
-		print('Cursor error: {}'.format(e))
-		connection.close()
-		exit()
-	return player[0]
+# We are considering if we want this feature
+# @app.route('/AdvancedSearch/')
+# def AdvancedSearch(search, key):
+# 	# using keywords such as name,age, attribute to form a Sql quiry that
+# 	# search the database and return list of results.
+# 	validCols = ['surname','name','age', 'accel', 'agility','react','balance',
+# 		'stamina','strength', 'intercept', 'position', 'vision','attributes']
+# 	try:
+# 		if search in validCols:
+# 			findPlayer = 'SELECT * FROM players WHERE ' + search + '=%s'
+# 		else:
+# 			print("Invalid column name")
+# 			exit()
+# 		keyword = (str(key),)
+# 		cur.execute(findPlayer, keyword)
+# 		player = cur.fetchall()
+# 	except Exception as e:
+# 		print('Cursor error: {}'.format(e))
+# 		connection.close()
+# 		exit()
+# 	return player[0]
