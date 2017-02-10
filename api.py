@@ -10,7 +10,7 @@ from flask import render_template, request
 # link to database
 database = getpass.getuser()
 user = getpass.getuser()
-password = getpass.getpass('Enter PostgreSQL password for user {}: '.format(user))
+#password = getpass.getpass('Enter PostgreSQL password for user {}: '.format(user))
 
 # Login to the database
 try:
