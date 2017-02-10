@@ -55,7 +55,7 @@ def getAllAttributes(Name):
 		print('Cursor error: {}'.format(e))
 		connection.close()
 		exit()
-	return player
+	return player[0]
 
 
 @app.route('/Search/Compare/<Player1>/<Player2>')
@@ -82,7 +82,7 @@ def similarPlayer(player):
 	#print(playerAttr[0])
 	differenceDictionary = dict()
 	for ComparePlayer in playerList:
-		angle = CalculateCos(9, playerAttr[0][3:],ComparePlayer[3:])
+		angle = CalculateCos(9, playerAttr[3:],ComparePlayer[3:])
 		differenceDictionary[angle] = ComparePlayer[1]	
 	result = list(differenceDictionary.keys())
 	result.sort()
