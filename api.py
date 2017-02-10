@@ -58,13 +58,13 @@ def getAllAttributes(Name):
 
 
 @app.route('/Search/Compare/<Player1>/<Player2>')
-def compareDifference(Player1, Player2):
+def compareDifference(player1, player2):
 	# return a list of the difference between two player, such as age, ability...
 	# using Player1 attribute - Player2 attribute
 	difference = []
-	Attr1 = getAllAttributes(Player1)
-	Attr2 = getAllAttributes(Player2)
-	print(Attr1)
+	Attr1 = getAllAttributes(str(player1))
+	Attr2 = getAllAttributes(str(player2))
+	print(player1)
 	for i in range(3, len(Attr1), 1):
 		difference.append(Attr1[i] - Attr2[i])
 		print(difference)
