@@ -45,7 +45,6 @@ def getAllAttributes(Name):
 	# return a list of search result for a specific player, such as name, age, ability...
 	'''player.printAllattributes()
 	'''
-	print("inallATTR:" + Name)
 
 	try:
 		findPlayer = "SELECT * FROM players WHERE name = (%s);"
