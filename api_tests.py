@@ -29,17 +29,17 @@ class apiTester(TestCase):
         self.assertTrue(api.AdvancedSearch("age" , 30) != [])
 
 
-if __name__ == '__main__':
-    # link to database
-    database = getpass.getuser()
-    user = getpass.getuser()
-    password = getpass.getpass('Enter PostgreSQL password for user {}: '.format(user))
+# if __name__ == '__main__':
+#     # link to database
+#     database = getpass.getuser()
+#     user = getpass.getuser()
+#     password = getpass.getpass('Enter PostgreSQL password for user {}: '.format(user))
 
-    # Login to the database
-    try:
-        connection = psycopg2.connect(database=database, user=user, password=password)
-    except Exception as e:
-        print(e)
-        exit() 
+#     # Login to the database
+#     try:
+#         connection = psycopg2.connect(database=database, user=user, password=password)
+#     except Exception as e:
+#         print(e)
+#         exit() 
            
-    unittest.main()
+#     unittest.main()
