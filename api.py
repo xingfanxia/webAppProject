@@ -45,6 +45,8 @@ def getAllAttributes(Name):
 	# return a list of search result for a specific player, such as name, age, ability...
 	'''player.printAllattributes()
 	'''
+    print(Name)
+
 	try:
 		findPlayer = "SELECT * FROM players WHERE name = (%s);"
 		data = (str(Name),)
@@ -62,9 +64,8 @@ def compareDifference(player1, player2):
 	# return a list of the difference between two player, such as age, ability...
 	# using Player1 attribute - Player2 attribute
 	difference = []
-	Attr1 = getAllAttributes(str(player1)[2:])
-	Attr2 = getAllAttributes(str(player2)[2:])
-	print(player1[2:])
+	Attr1 = getAllAttributes(str(player1))
+	Attr2 = getAllAttributes(str(player2))
 	for i in range(3, len(Attr1), 1):
 		difference.append(Attr1[i] - Attr2[i])
 		print(difference)
