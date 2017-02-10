@@ -65,11 +65,8 @@ def compareDifference(player1, player2):
 	difference = []
 	Attr1 = getAllAttributes(str(player1))
 	Attr2 = getAllAttributes(str(player2))
-	print("attr1:", Attr1)
-	print("attr2:", Attr2)
 	for i in range(3, len(Attr1), 1):
 		difference.append(Attr1[i] - Attr2[i])
-		print(difference)
 
 	return difference
 
