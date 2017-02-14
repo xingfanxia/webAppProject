@@ -30,6 +30,7 @@ def playerStats():
 def comparePlayerStats():
     players = request.form['srch-term-comparePlayers-1']
     playerList = players.split(',')
+    print(playerList)
     player1 = playerList[0]
     player2 = playerList[1]
     result = api.compareDifference(player1, player2)
