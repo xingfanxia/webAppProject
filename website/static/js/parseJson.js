@@ -1,6 +1,7 @@
 function onGetPlayerStats() {
 	event.preventDefault();
-    var url = '/playerStats/';
+	var srchTerm = document.getElementById('srch-term-player').value;
+    var url = '/playerStats/'+srchTerm;
     xmlHttpRequest = new XMLHttpRequest();
     xmlHttpRequest.open('get', url);
     alert("parsing");
