@@ -20,18 +20,18 @@ def get_main_page():
 def get_date():
     return datetime.datetime.now().strftime("%A, %d. %B %Y %I:%M:%S %p")
 
-# @app.route('/playerStats/', methods=['POST'])
-# def playerStats():
-#     playerName = request.form['srch-term-players']
-#     result = api.getAllAttributes(playerName)
-#     return jsonify(results = result)
-
-# @app.route('/playerStats/', methods=['POST'])
+@app.route('/playerStats/', methods=['POST'])
 def playerStats():
     playerName = request.form['srch-term-players']
-    result = str(api.getAllAttributes(playerName))
-    hello = get_template_attribute('index.html', 'display')
-    return hello(result)
+    result = api.getAllAttributes(playerName)
+    return jsonify(results = result)
+
+# # @app.route('/playerStats/', methods=['POST'])
+# def playerStats():
+#     playerName = request.form['srch-term-players']
+#     result = str(api.getAllAttributes(playerName))
+#     hello = get_template_attribute('index.html', 'display')
+#     return hello(result)
 
 @app.route('/comparePlayers/', methods=['POST'])
 def comparePlayerStats():
