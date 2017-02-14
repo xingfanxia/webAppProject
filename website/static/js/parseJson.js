@@ -66,11 +66,16 @@ function onGetPlayerStats() {
 }
 
 function playerStatsCallback(jsonResponse) {
+	var attributes = ["Surname", "Name", "Age", "Accel", "Agility", "React", 
+		"Balance"," Stamina", "Strength", 
+		"Intercept", "Position", "Vision"]
     var statsList = jsonResponse['results'];
     var stringdisplay = "";
+    stringdisplay += "<ul>"
     for (var i = 0; i < statsList.length; i++) {
-        stringdisplay += statsList[i] + ",";
+    	stringdisplay += "<li>" + attributes[i] + ": " + statsList[i] + "</li>";
     }
+    stringdisplay += "</ul>"
     // var fruitStr = ''
     // fruitStr += '<table><tr><th>name</th><th>rating</th></tr>'
     // for (var i = 0; i < fruitList.length; i++) {
