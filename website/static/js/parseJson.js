@@ -46,6 +46,7 @@ window.onload = function() {
 
 function updateGraph(listATTR) {
 	config.data.datasets[0].data = listATTR;
+	window.myRadar.update();
 }
 
 
