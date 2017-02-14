@@ -20,7 +20,7 @@ var config = {
             backgroundColor: "rgba(0,191,255,0.5)",
             pointBackgroundColor: "rgba(220,220,220,1)",
             pointHoverBackgroundColor: "#fff",
-            data: [0, 0, 0, 0, 0, 0, 0, 0, 0]
+            data: [NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN]
         }]
     },
     options: {
