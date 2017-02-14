@@ -7,7 +7,7 @@
     Flask app serving up the pieces of the javascript-sample for
     CS 257, Spring 2016.
 '''
-import sys, flask, datetime, api
+import sys, flask, datetime
 from flask import jsonify, request
 
 app = flask.Flask(__name__, static_folder='website/static', template_folder='website')
@@ -22,9 +22,21 @@ def get_date():
 
 @app.route('/playerStats/', methods=['POST'])
 def playerStats():
-    value = request.form['srch-term-players']
-    result = api.getAllAttributes(value)
-    print("the input value is: ", value)
+    playerName = request.form['srch-term-players']
+    result = api.getAllAttributes(playerName)
+    return jsonify(results = result)
+
+@app.route('/comparePlayers/', methods=['POST'])
+def comparePlayerStats():
+    player1 = request.form['srch-term-comparePlayers-1']
+    player2 = request.form['srch-term-comparePlayers-2']
+    result = api.compareDifference(player1, player2)
+    return jsonify(results = result)
+
+@app.route('/similarPlayers/', methods=['POST'])
+def findSimilarPlayers():
+    playerName = request.form['srch-term-similarPlayers']
+    result = api.similarPlayer(playerName)
     return jsonify(results = result)
 
 @app.route('/fruitPlease/')
