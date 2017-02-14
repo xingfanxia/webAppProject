@@ -145,7 +145,7 @@
             <h2 class="featurette-heading">Result 
                 <span class="text-muted">Display</span>
             </h2>
-            <p class="lead">Here is where we display the result to the query
+            <p class="lead" id="displayResult">Here is where we display the result to the query
             <br>
             {% macro display(result) %}The result: {{ result }}!{% endmacro %}
             </p>
@@ -168,7 +168,7 @@
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 
     <!-- script to change tabs and display content -->
-<!--     <script src="{{ url_for('static', filename='js/tabSwitch.js') }}"></script>
- --></body>
+    <script src="{{ url_for('static', filename='js/parseJson.js') }}"></script>
+</body>
 
 </html>
