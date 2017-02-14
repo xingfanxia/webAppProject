@@ -145,6 +145,9 @@
             <h2 class="featurette-heading">Result 
                 <span class="text-muted">Display</span>
             </h2>
+            <div style="width:75%">
+                <canvas id="canvas"></canvas>
+            </div>
             <p class="lead" id="displayResult">Here is where we display the result to the query
             <br>
             {% macro display(result) %}The result: {{ result }}!{% endmacro %}
@@ -169,6 +172,10 @@
 
     <!-- script to change tabs and display content -->
     <script src="{{ url_for('static', filename='js/parseJson.js') }}"></script>
+
+    <!-- chart.js -->
+    <script src="{{ url_for('static', filename='js/Chart.bundle.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/drawRadarGraph.js') }}"></script>
 </body>
 
 </html>

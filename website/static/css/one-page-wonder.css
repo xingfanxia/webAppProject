@@ -231,3 +231,8 @@ div.input-group {
   margin: 20px 0;
 }
 
+canvas {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
