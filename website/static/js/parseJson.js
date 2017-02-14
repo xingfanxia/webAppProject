@@ -79,6 +79,7 @@ function playerStatsCallback(jsonResponse) {
     // fruitStr += '</table>'
     var statsDiv = document.getElementById('displayResult');
     statsDiv.innerHTML = stringdisplay;
-    updateGraph(statsList);
+    var passList = statsList.slice(3);
+    updateGraph(passList);
 }
 
