@@ -3,7 +3,7 @@ function onGetPlayerStats() {
     var url = '/playerStats/';
     xmlHttpRequest = new XMLHttpRequest();
     xmlHttpRequest.open('get', url);
-    
+    alert("parsing");
     xmlHttpRequest.onreadystatechange = function() {
         if (xmlHttpRequest.readyState == 4 && xmlHttpRequest.status == 200) {
             playerStatsCallback(JSON.parse(xmlHttpRequest.response));
@@ -25,7 +25,7 @@ function playerStatsCallback(jsonResponse) {
     //     fruitStr += '<tr><td>' + fruitList[i]['name'] + '</td><td>' + fruitList[i]['rating'] + '</td></tr>'
     // }
     // fruitStr += '</table>'
-    alert("callback received")
+    alert("callback received");
     var statsDiv = document.getElementById('displayResult');
     statsDiv.innerHTML = stringdisplay;
 }
