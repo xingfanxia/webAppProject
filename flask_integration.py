@@ -20,7 +20,7 @@ def get_main_page():
 def get_date():
     return datetime.datetime.now().strftime("%A, %d. %B %Y %I:%M:%S %p")
 
-@app.route('/playerStats/', methods=['POST'])
+@app.route('/playerStats/')
 def playerStats():
     playerName = request.form['srch-term-players']
     result = api.getAllAttributes(playerName)
