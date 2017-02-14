@@ -25,7 +25,7 @@ function playerStatsCallback(jsonResponse) {
     //     fruitStr += '<tr><td>' + fruitList[i]['name'] + '</td><td>' + fruitList[i]['rating'] + '</td></tr>'
     // }
     // fruitStr += '</table>'
-    
+    alert("callback received")
     var statsDiv = document.getElementById('displayResult');
-    fruitDiv.innerHTML = stringdisplay;
+    statsDiv.innerHTML = stringdisplay;
 }
