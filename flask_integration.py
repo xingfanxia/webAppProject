@@ -7,10 +7,8 @@
     Flask app serving up the pieces of the javascript-sample for
     CS 257, Spring 2016.
 '''
-import sys
-import flask
-import datetime
-from flask import jsonify
+import sys, flask, datetime, api
+from flask import jsonify, request
 
 app = flask.Flask(__name__, static_folder='website/static', template_folder='website')
 
@@ -21,7 +19,14 @@ def get_main_page():
 @app.route('/date/')
 def get_date():
     return datetime.datetime.now().strftime("%A, %d. %B %Y %I:%M:%S %p")
-    
+
+@app.route('/', methods=['POST'])
+def inputValue():
+    value = request.form['srch-term-players']
+    result = api.getAllAttributes(value)
+    print("the input value is: ", value)
+    return result
+
 @app.route('/fruitPlease/')
 def get_fruit():
     fruitRatings = [
@@ -45,7 +50,6 @@ if __name__ == '__main__':
     if len(sys.argv) != 3:
         print('Usage: {0} host port'.format(sys.argv[0]), file=sys.stderr)
         exit()
-
     host = sys.argv[1]
     port = int(sys.argv[2])
     app.run(host=host, port=port, debug=True)

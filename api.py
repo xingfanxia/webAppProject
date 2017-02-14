@@ -4,8 +4,7 @@
 	3. Similar player suggestion
 	4. Get player attributes
 	'''
-import math, flask, sys, json, jinja2, psycopg2, getpass
-from flask import render_template, request
+import math, psycopg2, getpass
 
 # link to database
 database = getpass.getuser()

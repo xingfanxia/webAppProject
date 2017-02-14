@@ -3,7 +3,7 @@ $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
   alert(target);
 });
 
-function getSearchTermPlayer() {
-    var keyword = document.getElementById('srch-term-player');
-    alert(keyword.value);
-}
+// function getSearchTermPlayer() {
+//     var keyword = document.getElementById('srch-term-player');
+//     alert(keyword.value);
+// }
