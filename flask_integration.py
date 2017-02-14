@@ -28,8 +28,10 @@ def playerStats():
 
 @app.route('/comparePlayers/', methods=['POST'])
 def comparePlayerStats():
-    player1 = request.form['srch-term-comparePlayers-1']
-    player2 = request.form['srch-term-comparePlayers-2']
+    players = request.form['srch-term-comparePlayers-1']
+    playerList = players.split(',')
+    player1 = playerList[0]
+    player2 = playerList[1]
     result = api.compareDifference(player1, player2)
     return jsonify(results = result)
 
