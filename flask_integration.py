@@ -25,7 +25,7 @@ def inputValue():
     value = request.form['srch-term-players']
     result = api.getAllAttributes(value)
     print("the input value is: ", value)
-    return result[0]
+    return jsonify(results = result)
 
 @app.route('/fruitPlease/')
 def get_fruit():
