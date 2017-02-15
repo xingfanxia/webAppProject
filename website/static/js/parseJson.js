@@ -88,6 +88,34 @@ var config_compare = {
     }
 };
 
+var barchartData = {
+    labels: ["Player1", "Player2", "Player3", "Player4", "Player5", "Player6", "Player7"],
+    datasets: [{
+        type: 'bar',
+        label: 'Similar Players',
+        backgroundColor: "rgba(151,187,205,0.5)",
+        data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()],
+        borderColor: 'white',
+        borderWidth: 2
+    }]
+
+};
+
+function drawBarChart() {
+    var ctx = document.getElementById("canvas").getContext("2d");
+    window.myBarChart = new Chart(ctx, {
+        type: 'bar',
+        data: barchartData,
+        options: {
+            responsive: true,
+            title: {
+                display: true,
+                text: 'Similiarity Bar Chart'
+            }
+        }
+    });
+};
+
 window.onload = function() {
     window.myRadar = new Chart(document.getElementById("canvas"), config_compare);
 };
@@ -102,6 +130,13 @@ function updateGraphCompare(attr1, attr2) {
 	config_compare.data.datasets[1].data = attr2;
 	// window.myRadar = new Chart(document.getElementById("canvas"), config_compare);
 	window.myRadar.update();
+}
+
+function updateBarChart(names, listATTR) {
+    barchartData.labels = names;
+    barchartData.datasets[0].data = listATTR;
+    drawBarChart();
+    // window.myBarChart.update();
 }
 
 $( function() {
@@ -153,6 +188,39 @@ function playerStatsCallback(jsonResponse) {
 	    statsDiv.innerHTML = stringdisplay;
 	    var passList = statsList.slice(3);
 	    updateGraph(passList);    	
+    }
+}
+
+function onSimilarPlayers() {
+	event.preventDefault();
+	var srchTerm = document.getElementById('srch-term-similar').value;
+    var url = '/similarPlayers/'+srchTerm;
+    xmlHttpRequest = new XMLHttpRequest();
+    xmlHttpRequest.open('get', url);
+    xmlHttpRequest.onreadystatechange = function() {
+        if (xmlHttpRequest.readyState == 4 && xmlHttpRequest.status == 200) {
+            similarPlayersCallback(JSON.parse(xmlHttpRequest.response));
+        }
+    }
+    xmlHttpRequest.send(null)
+}
+
+function similarPlayersCallback(jsonResponse) {
+    var similarPLs = jsonResponse['results'];
+    var angles = jsonResponse['angleList'];
+    if (similarPLs == -1) {
+    	alert("Please Enter the right full name of the player!")
+    } else {
+	    var stringdisplay = "";
+	    stringdisplay += "<h3>Similar Players are: </h3> <br>"
+	    stringdisplay += "<ul>"
+	    for (var i = 0; i < similarPLs.length; i++) {
+	    	stringdisplay += "<li>" + similarPLs[i] + "</li>";
+	    }
+	    stringdisplay += "</ul>"
+	    var statsDiv = document.getElementById('displayResult');
+	    statsDiv.innerHTML = stringdisplay;
+        updateBarChart(similarPLs, angles);
     }
 }
 

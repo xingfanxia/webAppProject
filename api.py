@@ -87,15 +87,20 @@ def similarPlayer(player):
 	result.sort()
 	# The most similar player should be this player itself, so we choose the second player as the start to print.
 	similarList = []
-	for i in range(-4,-1,1):
+	for i in range(-8,-1,1):
 		similarList.append(differenceDictionary[result[i]])
-	return similarList
- 
+	if len(similarList) < 1:
+		return [-1, -1]
+	angleList = result[-8:-1]
+	return [similarList, angleList]
+
 
 def CalculateCos(N, vector1, vector2):
 	# This function is used to find the difference of two players using the Cos Theory
 	# It calculates the Cos vaule of the angle between N-dimision two vector made by player attributes
 	# and turn a number
+	# 
+
 	dotProduct = 0
 	vectorLen1 = 0
 	vectorLen2 = 0

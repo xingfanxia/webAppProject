@@ -33,11 +33,10 @@ def getNames(compare):
         if compare[i] == "+":
             return [compare[:i], compare[i+1:]]
 
-@app.route('/similarPlayers/', methods=['POST'])
-def findSimilarPlayers():
-    playerName = request.form['srch-term-similarPlayers']
-    result = api.similarPlayer(playerName)
-    return jsonify(results = result)
+@app.route('/similarPlayers/<playerName>')
+def findSimilarPlayers(playerName):
+    result, angleList = api.similarPlayer(playerName)
+    return jsonify(results = result, angleList = angleList)
 
 if __name__ == '__main__':
     if len(sys.argv) != 3:
