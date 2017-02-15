@@ -9,11 +9,11 @@ import math, psycopg2, getpass, flask
 # link to database
 database = getpass.getuser()
 user = getpass.getuser()
-password = getpass.getpass('Enter PostgreSQL password for user {}: '.format(user))
+# password = getpass.getpass('Enter PostgreSQL password for user {}: '.format(user))
 
 # Login to the database
 try:
-	connection = psycopg2.connect(database=database, user=user, password='password')
+	connection = psycopg2.connect(database=database, user=user, password='moon329tiger')
 except Exception as e:
 	print(e)
 	exit() 
