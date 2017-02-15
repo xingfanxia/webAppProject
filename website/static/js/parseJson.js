@@ -15,7 +15,9 @@ var config = {
     "Balance"," Stamina", "Strength", 
     "Intercept", "Position", "Vision"],
         datasets: [{
+        	scaleOverride: true,
             label: "Player Stats",
+            scaleStartValue: 0,
             // borderColor: 'rgb(30,144,255)',
             backgroundColor: "rgba(0,191,255,0.5)",
             pointBackgroundColor: "rgba(220,220,220,1)",
