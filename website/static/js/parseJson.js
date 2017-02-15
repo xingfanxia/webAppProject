@@ -49,6 +49,35 @@ function updateGraph(listATTR) {
 	window.myRadar.update();
 }
 
+$( function() {
+	var availableTags = [
+	"ActionScript",
+	"AppleScript",
+	"Asp",
+	"BASIC",
+	"C",
+	"C++",
+	"Clojure",
+	"COBOL",
+	"ColdFusion",
+	"Erlang",
+	"Fortran",
+	"Groovy",
+	"Haskell",
+	"Java",
+	"JavaScript",
+	"Lisp",
+	"Perl",
+	"PHP",
+	"Python",
+	"Ruby",
+	"Scala",
+	"Scheme"
+	];
+	$( "#srch-term-player" ).autocomplete({
+		source: availableTags
+	});
+} );
 
 function onGetPlayerStats() {
 	event.preventDefault();
