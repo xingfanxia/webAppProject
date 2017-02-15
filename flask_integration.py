@@ -16,58 +16,28 @@ app = flask.Flask(__name__, static_folder='website/static', template_folder='web
 def get_main_page():
     return flask.render_template('index.html')
 
-@app.route('/date/')
-def get_date():
-    return datetime.datetime.now().strftime("%A, %d. %B %Y %I:%M:%S %p")
-
 @app.route('/playerStats/<playerName>/')
 def playerStats(playerName):
     result = api.getAllAttributes(playerName)
     return jsonify(results = result)
 
-# # @app.route('/playerStats/', methods=['POST'])
-# def playerStats():
-#     playerName = request.form['srch-term-players']
-#     result = str(api.getAllAttributes(playerName))
-#     hello = get_template_attribute('index.html', 'display')
-#     return hello(result)
+@app.route('/Search/Compare/<compare>')
+def comparePlayerStats(compare):
+    player1, player2 = getNames(compare)
+    player1Stats, player2Stats, result = api.compareDifference(player1, player2)
+    print(player1Stats, player2Stats, result)
+    return jsonify(results = result, player1 = player1Stats, player2 = player2Stats)
 
-@app.route('/comparePlayers/')
-def comparePlayerStats():
-    player1 = request.form['srch-term-comparePlayers-1']
-    player2 = request.form['srch-term-comparePlayers-2']
-    # players = request.form['srch-term-comparePlayers-1']
-    # playerList = players.split(',')
-    # print(playerList)
-    # player1 = playerList[0]
-    # player2 = playerList[1]
-    result = api.compareDifference(player1, player2)
-    return jsonify(results = result)
+def getNames(compare):
+    for i in range(len(compare)):
+        if compare[i] == "+":
+            return [compare[:i], compare[i+1:]]
 
 @app.route('/similarPlayers/', methods=['POST'])
 def findSimilarPlayers():
     playerName = request.form['srch-term-similarPlayers']
     result = api.similarPlayer(playerName)
     return jsonify(results = result)
-
-@app.route('/fruitPlease/')
-def get_fruit():
-    fruitRatings = [
-        {
-            'name': 'banana',
-            'rating': 6
-        },
-        {
-            'name': 'blueberry',
-            'rating': 8
-        },
-        {
-            'name': 'apple',
-            'rating': 9
-        }
-    ]
-    
-    return jsonify({'results': fruitRatings})
 
 if __name__ == '__main__':
     if len(sys.argv) != 3:

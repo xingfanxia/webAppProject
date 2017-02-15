@@ -66,10 +66,11 @@ def compareDifference(player1, player2):
 	difference = []
 	Attr1 = getAllAttributes(str(player1))
 	Attr2 = getAllAttributes(str(player2))
+	if Attr1 == -1 or Attr2 == -1:
+		return [-1, -1, -1]
 	for i in range(3, len(Attr1), 1):
 		difference.append(Attr1[i] - Attr2[i])
-
-	return difference
+	return [Attr1, Attr2, difference]
 
 
 @app.route('/Search/Similar/<Player>')

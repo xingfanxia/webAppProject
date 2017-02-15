@@ -29,7 +29,52 @@ var config = {
     options: {
         title:{
             display:true,
-            text:"Demo Chart"
+            text:"PlayerStats"
+        },
+        elements: {
+            line: {
+                tension: 0.0,
+            }
+        },
+        scale: {
+            beginAtZero: true,
+            reverse: false
+        }
+    }
+};
+
+var config_compare = {
+    type: 'radar',
+    data: {
+        labels: ["Accel", "Agility", "React", 
+    "Balance"," Stamina", "Strength", 
+    "Intercept", "Position", "Vision"],
+        datasets: [{
+        	scaleOverride: true,
+            label: "Player1 Stats",
+            scaleStartValue: 0,
+            pointLabelFontSize: 16,
+            borderColor: "rgba(0,120,0,1)",
+            backgroundColor: "rgba(0,120,0,0.2)",
+            pointBackgroundColor: "rgba(220,220,220,1)",
+            pointHoverBackgroundColor: "#fff",
+            data: [NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN]
+        }, {
+        	scaleOverride: true,
+            label: "Player2 Stats",
+            scaleStartValue: 0,
+            pointLabelFontSize: 16,
+            borderColor: "rgba(120,0,0,1)",
+            backgroundColor: "rgba(120,0,0,0.2)",
+            pointBackgroundColor: "rgba(220,220,220,1)",
+            pointHoverBackgroundColor: "#fff",
+            data: [NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN]
+        }]
+    },
+    options: {
+        title:{
+            display:true,
+            text:"PlayerStats"
         },
         elements: {
             line: {
@@ -44,11 +89,18 @@ var config = {
 };
 
 window.onload = function() {
-    window.myRadar = new Chart(document.getElementById("canvas"), config);
+    window.myRadar = new Chart(document.getElementById("canvas"), config_compare);
 };
 
 function updateGraph(listATTR) {
-	config.data.datasets[0].data = listATTR;
+	config_compare.data.datasets[0].data = listATTR;
+	window.myRadar.update();
+}
+
+function updateGraphCompare(attr1, attr2) {
+	config_compare.data.datasets[0].data = attr1;
+	config_compare.data.datasets[1].data = attr2;
+	// window.myRadar = new Chart(document.getElementById("canvas"), config_compare);
 	window.myRadar.update();
 }
 
@@ -97,17 +149,47 @@ function playerStatsCallback(jsonResponse) {
 	    	stringdisplay += "<li>" + attributes[i] + ": " + statsList[i] + "</li>";
 	    }
 	    stringdisplay += "</ul>"
-	    // var fruitStr = ''
-	    // fruitStr += '<table><tr><th>name</th><th>rating</th></tr>'
-	    // for (var i = 0; i < fruitList.length; i++) {
-	    //     fruitStr += '<tr><td>' + fruitList[i]['name'] + '</td><td>' + fruitList[i]['rating'] + '</td></tr>'
-	    // }
-	    // fruitStr += '</table>'
 	    var statsDiv = document.getElementById('displayResult');
 	    statsDiv.innerHTML = stringdisplay;
 	    var passList = statsList.slice(3);
 	    updateGraph(passList);    	
     }
-
 }
 
+function onComparePlayers() {
+    event.preventDefault();
+    var compare1 = document.getElementById('srch-term-compare1').value;
+    var compare2 = document.getElementById('srch-term-compare2').value;    
+    var url = '/Search/Compare/'+ compare1 + "+" + compare2;
+    xmlHttpRequest = new XMLHttpRequest();
+    xmlHttpRequest.open('get', url);
+    xmlHttpRequest.onreadystatechange = function() {
+        if (xmlHttpRequest.readyState == 4 && xmlHttpRequest.status == 200) {
+            compareCallback(JSON.parse(xmlHttpRequest.response));
+        }
+    }
+    xmlHttpRequest.send(null)
+}
+function compareCallback(jsonResponse) {
+    var attributes = ["Accel", "Agility", "React", 
+        "Balance"," Stamina", "Strength", 
+        "Intercept", "Position", "Vision"]
+    // var playerStat2 = jsonResponse['playerStat2'];
+    // var playerStat1 = jsonResponse['playerStat1'];
+    var player1stats = jsonResponse['player1'].slice(3);
+    var player2stats = jsonResponse['player2'].slice(3);
+    var difference = jsonResponse['results'];
+    if(difference == -1){
+        alert("Please enter the right full name!");
+    } else {
+        var stringdisplay = "";
+        stringdisplay += "<ul>"
+        for (var i = 0; i < difference.length; i++) {
+            stringdisplay += "<li>" + attributes[i] + ": " + difference[i] + "</li>";
+        }
+        stringdisplay += "</ul>"
+        var statsDiv = document.getElementById('displayResult');
+        statsDiv.innerHTML = stringdisplay;
+        updateGraphCompare(player1stats, player2stats);
+    }
+}
