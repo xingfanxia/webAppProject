@@ -77,6 +77,15 @@ $( function() {
 	$( "#srch-term-player" ).autocomplete({
 		source: availableTags
 	});
+	$( "#srch-term-compare1" ).autocomplete({
+		source: availableTags
+	});
+	$( "#srch-term-compare2" ).autocomplete({
+		source: availableTags
+	});
+	$( "#srch-term-similar" ).autocomplete({
+		source: availableTags
+	});
 } );
 
 function onGetPlayerStats() {
