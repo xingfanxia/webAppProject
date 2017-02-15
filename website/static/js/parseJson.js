@@ -43,6 +43,8 @@ var config = {
     }
 };
 
+var step = 10;
+var max = 100;
 var config_compare = {
     type: 'radar',
     data: {
@@ -58,6 +60,8 @@ var config_compare = {
             backgroundColor: "rgba(0,120,0,0.2)",
             pointBackgroundColor: "rgba(220,220,220,1)",
             pointHoverBackgroundColor: "#fff",
+            scaleSteps: step,
+            scaleStepWidth: Math.ceil(max / step),
             data: [NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN]
         }, {
         	scaleOverride: true,
@@ -68,6 +72,8 @@ var config_compare = {
             backgroundColor: "rgba(120,0,0,0.2)",
             pointBackgroundColor: "rgba(220,220,220,1)",
             pointHoverBackgroundColor: "#fff",
+            scaleSteps: step,
+            scaleStepWidth: Math.ceil(max / step),
             data: [NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN]
         }]
     },
@@ -92,7 +98,7 @@ var barchartData = {
     labels: ["Player1", "Player2", "Player3", "Player4", "Player5", "Player6", "Player7"],
     datasets: [{
         type: 'bar',
-        label: 'Similar Players',
+        label: 'Similarity of the player to player of interest',
         backgroundColor: "rgba(151,187,205,0.5)",
         data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()],
         borderColor: 'white',
@@ -120,14 +126,19 @@ window.onload = function() {
     window.myRadar = new Chart(document.getElementById("canvas"), config_compare);
 };
 
-function updateGraph(listATTR) {
+function updateGraph(listATTR, player1) {
 	config_compare.data.datasets[0].data = listATTR;
+    config_compare.data.datasets[1].data = [NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN];
+     config_compare.data.datasets[0].label= player1;
+    config_compare.data.datasets[1].label= "Player2 Stats";
 	window.myRadar.update();
 }
 
-function updateGraphCompare(attr1, attr2) {
+function updateGraphCompare(attr1, attr2, player1, player2) {
 	config_compare.data.datasets[0].data = attr1;
 	config_compare.data.datasets[1].data = attr2;
+    config_compare.data.datasets[0].label= player1;
+    config_compare.data.datasets[1].label= player2;
 	// window.myRadar = new Chart(document.getElementById("canvas"), config_compare);
 	window.myRadar.update();
 }
@@ -175,6 +186,7 @@ function playerStatsCallback(jsonResponse) {
 		"Balance"," Stamina", "Strength", 
 		"Intercept", "Position", "Vision"]
     var statsList = jsonResponse['results'];
+    var playerName = statsList[1];
     if (statsList == -1) {
     	alert("Please Enter the right full name of the player!")
     } else {
@@ -187,7 +199,7 @@ function playerStatsCallback(jsonResponse) {
 	    var statsDiv = document.getElementById('displayResult');
 	    statsDiv.innerHTML = stringdisplay;
 	    var passList = statsList.slice(3);
-	    updateGraph(passList);    	
+	    updateGraph(passList, playerName);    	
     }
 }
 
@@ -244,6 +256,8 @@ function compareCallback(jsonResponse) {
         "Intercept", "Position", "Vision"]
     // var playerStat2 = jsonResponse['playerStat2'];
     // var playerStat1 = jsonResponse['playerStat1'];
+    var player1Name = jsonResponse['player1'][1];
+    var player2Name = jsonResponse['player2'][1];
     var player1stats = jsonResponse['player1'].slice(3);
     var player2stats = jsonResponse['player2'].slice(3);
     var difference = jsonResponse['results'];
@@ -258,6 +272,6 @@ function compareCallback(jsonResponse) {
         stringdisplay += "</ul>"
         var statsDiv = document.getElementById('displayResult');
         statsDiv.innerHTML = stringdisplay;
-        updateGraphCompare(player1stats, player2stats);
+        updateGraphCompare(player1stats, player2stats, player1Name, player2Name);
     }
 }

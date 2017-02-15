@@ -117,7 +117,7 @@ def CalculateCos(N, vector1, vector2):
 	if vectorLength1*vectorLength2 == 0:
 		return 99
 	cosV1V2 = dotProduct / (vectorLength1*vectorLength2)
-	return cosV1V2
+	return cosV1V2**30
 
 # We are considering if we want this feature
 # @app.route('/AdvancedSearch/')
