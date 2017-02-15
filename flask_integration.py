@@ -20,7 +20,7 @@ def get_main_page():
 def get_date():
     return datetime.datetime.now().strftime("%A, %d. %B %Y %I:%M:%S %p")
 
-@app.route('/playerStats/<playerName>')
+@app.route('/playerStats/<playerName>/')
 def playerStats(playerName):
     result = api.getAllAttributes(playerName)
     return jsonify(results = result)
@@ -32,7 +32,7 @@ def playerStats(playerName):
 #     hello = get_template_attribute('index.html', 'display')
 #     return hello(result)
 
-@app.route('/comparePlayers/', methods=['POST'])
+@app.route('/comparePlayers/')
 def comparePlayerStats():
     player1 = request.form['srch-term-comparePlayers-1']
     player2 = request.form['srch-term-comparePlayers-2']

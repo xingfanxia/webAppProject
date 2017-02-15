@@ -70,21 +70,26 @@ function playerStatsCallback(jsonResponse) {
 		"Balance"," Stamina", "Strength", 
 		"Intercept", "Position", "Vision"]
     var statsList = jsonResponse['results'];
-    var stringdisplay = "";
-    stringdisplay += "<ul>"
-    for (var i = 0; i < statsList.length; i++) {
-    	stringdisplay += "<li>" + attributes[i] + ": " + statsList[i] + "</li>";
+    if (statsList[0] == -1) {
+    	alert("Please Enter the right full name of the player!")
+    } else {
+	    var stringdisplay = "";
+	    stringdisplay += "<ul>"
+	    for (var i = 0; i < statsList.length; i++) {
+	    	stringdisplay += "<li>" + attributes[i] + ": " + statsList[i] + "</li>";
+	    }
+	    stringdisplay += "</ul>"
+	    // var fruitStr = ''
+	    // fruitStr += '<table><tr><th>name</th><th>rating</th></tr>'
+	    // for (var i = 0; i < fruitList.length; i++) {
+	    //     fruitStr += '<tr><td>' + fruitList[i]['name'] + '</td><td>' + fruitList[i]['rating'] + '</td></tr>'
+	    // }
+	    // fruitStr += '</table>'
+	    var statsDiv = document.getElementById('displayResult');
+	    statsDiv.innerHTML = stringdisplay;
+	    var passList = statsList.slice(3);
+	    updateGraph(passList);    	
     }
-    stringdisplay += "</ul>"
-    // var fruitStr = ''
-    // fruitStr += '<table><tr><th>name</th><th>rating</th></tr>'
-    // for (var i = 0; i < fruitList.length; i++) {
-    //     fruitStr += '<tr><td>' + fruitList[i]['name'] + '</td><td>' + fruitList[i]['rating'] + '</td></tr>'
-    // }
-    // fruitStr += '</table>'
-    var statsDiv = document.getElementById('displayResult');
-    statsDiv.innerHTML = stringdisplay;
-    var passList = statsList.slice(3);
-    updateGraph(passList);
+
 }
 

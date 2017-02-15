@@ -13,7 +13,7 @@ user = getpass.getuser()
 
 # Login to the database
 try:
-	connection = psycopg2.connect(database=database, user=user, password='moon329tiger')
+	connection = psycopg2.connect(database=database, user=user, password='')
 except Exception as e:
 	print(e)
 	exit() 
@@ -54,6 +54,8 @@ def getAllAttributes(Name):
 		print('Cursor error: {}'.format(e))
 		connection.close()
 		exit()
+	if len(player) < 1:
+		return -1
 	return player[0]
 
 
