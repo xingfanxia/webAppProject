@@ -217,6 +217,7 @@ function onSimilarPlayers() {
     xmlHttpRequest.send(null)
 }
 
+//Needs to handle invalid input
 function similarPlayersCallback(jsonResponse) {
     var similarPLs = jsonResponse['results'];
     var angles = jsonResponse['angleList'];
@@ -250,6 +251,8 @@ function onComparePlayers() {
     }
     xmlHttpRequest.send(null)
 }
+
+//Needs to handle invalid input
 function compareCallback(jsonResponse) {
     var attributes = ["Accel", "Agility", "React", 
         "Balance"," Stamina", "Strength", 
