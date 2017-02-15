@@ -25,7 +25,6 @@ def playerStats(playerName):
 def comparePlayerStats(compare):
     player1, player2 = getNames(compare)
     player1Stats, player2Stats, result = api.compareDifference(player1, player2)
-    print(player1Stats, player2Stats, result)
     return jsonify(results = result, player1 = player1Stats, player2 = player2Stats)
 
 def getNames(compare):
