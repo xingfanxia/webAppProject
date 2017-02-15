@@ -70,7 +70,7 @@ function playerStatsCallback(jsonResponse) {
 		"Balance"," Stamina", "Strength", 
 		"Intercept", "Position", "Vision"]
     var statsList = jsonResponse['results'];
-    if (statsList[0] == -1) {
+    if (statsList == -1) {
     	alert("Please Enter the right full name of the player!")
     } else {
 	    var stringdisplay = "";
