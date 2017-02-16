@@ -259,14 +259,14 @@ function compareCallback(jsonResponse) {
         "Intercept", "Position", "Vision"]
     // var playerStat2 = jsonResponse['playerStat2'];
     // var playerStat1 = jsonResponse['playerStat1'];
-    var player1Name = jsonResponse['player1'][1];
-    var player2Name = jsonResponse['player2'][1];
-    var player1stats = jsonResponse['player1'].slice(3);
-    var player2stats = jsonResponse['player2'].slice(3);
     var difference = jsonResponse['results'];
     if(difference == -1){
         alert("Please enter the right full name!");
     } else {
+        var player1Name = jsonResponse['player1'][1];
+        var player2Name = jsonResponse['player2'][1];
+        var player1stats = jsonResponse['player1'].slice(3);
+        var player2stats = jsonResponse['player2'].slice(3);
         var stringdisplay = "";
         stringdisplay += "<ul>"
         for (var i = 0; i < difference.length; i++) {

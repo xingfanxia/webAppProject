@@ -78,6 +78,9 @@ def similarPlayer(player):
 	# return a list player objects that have similar attributes with given player
 	playerList = getAllPlayer()
 	playerAttr = getAllAttributes(player)
+
+	if playerAttr == -1:
+		return [-1, -1]
 	#print(playerAttr[0])
 	differenceDictionary = dict()
 	for ComparePlayer in playerList:
@@ -117,7 +120,7 @@ def CalculateCos(N, vector1, vector2):
 	if vectorLength1*vectorLength2 == 0:
 		return 99
 	cosV1V2 = dotProduct / (vectorLength1*vectorLength2)
-	return cosV1V2**30
+	return cosV1V2**40
 
 # We are considering if we want this feature
 # @app.route('/AdvancedSearch/')
