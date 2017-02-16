@@ -98,7 +98,7 @@ var barchartData = {
     labels: ["Player1", "Player2", "Player3", "Player4", "Player5", "Player6", "Player7"],
     datasets: [{
         type: 'bar',
-        label: 'Similarity of the player to player of interest',
+        label: 'Similarity to player of interest',
         backgroundColor: "rgba(151,187,205,0.5)",
         data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()],
         borderColor: 'white',
@@ -117,6 +117,20 @@ function drawBarChart() {
             title: {
                 display: true,
                 text: 'Similiarity Bar Chart'
+            },
+            scales: {
+                yAxes: [{
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Similiarity'
+                  }
+                }],
+                xAxes: [{
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'PlayerName'
+                  }
+                }]
             }
         }
     });
