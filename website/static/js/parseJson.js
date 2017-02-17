@@ -110,7 +110,7 @@ var barchartData = {
 
 };
 
-// config for draw Chart 
+// config for draw bar Chart 
 function drawBarChart() {
     var ctx = document.getElementById("canvas").getContext("2d");
     window.myBarChart = new Chart(ctx, {
@@ -147,29 +147,38 @@ window.onload = function() {
 
 //Update Graph reflecting the player name and his attributes
 function updateGraph(listATTR, player1) {
+    config_compare.data.labels = ["Accel", "Agility", "React", 
+    "Balance"," Stamina", "Strength", 
+    "Intercept", "Position", "Vision"];
     config_compare.data.datasets[0].data = listATTR;
     //reset second dataset to default
     config_compare.data.datasets[1].data = [NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN];
-     config_compare.data.datasets[0].label= player1;
+    config_compare.data.datasets[0].label= player1;
     config_compare.data.datasets[1].label= "Player2 Stats";
     window.myRadar.update();
 }
 
 //Update Graph reflecting the two players' names and their attributes
 function updateGraphCompare(attr1, attr2, player1, player2) {
+    config_compare.data.labels = ["Accel", "Agility", "React", 
+    "Balance"," Stamina", "Strength", 
+    "Intercept", "Position", "Vision"];
     config_compare.data.datasets[0].data = attr1;
     config_compare.data.datasets[1].data = attr2;
     config_compare.data.datasets[0].label= player1;
     config_compare.data.datasets[1].label= player2;
-    // window.myRadar = new Chart(document.getElementById("canvas"), config_compare);
     window.myRadar.update();
 }
 
 //Update bar charts reflecting the dataset passed in
-function updateBarChart(names, listATTR) {
-    barchartData.labels = names;
-    barchartData.datasets[0].data = listATTR;
-    drawBarChart();
+function updateSimilarChart(names, listATTR) {
+    config_compare.data.datasets[0].data = listATTR;
+    //reset second dataset to default
+    config_compare.data.labels = names;
+    config_compare.data.datasets[1].data = [NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN];
+    config_compare.data.datasets[0].label= "Similar Players";
+    config_compare.data.datasets[1].label= "";
+    window.myRadar.update();
 }
 
 //Autocomplete for search boxes
@@ -263,13 +272,13 @@ function similarPlayersCallback(jsonResponse) {
         var stringdisplay = "";
         stringdisplay += "<h3>Similar Players are: </h3> <br>"
         stringdisplay += "<ul>"
-        for (var i = 0; i < similarPLs.length; i++) {
+        for (var i = similarPLs.length-1; i > -1 ; i--) {
             stringdisplay += "<li>" + similarPLs[i] + "</li>";
         }
         stringdisplay += "</ul>"
         var statsDiv = document.getElementById('displayResult');
         statsDiv.innerHTML = stringdisplay;
-        updateBarChart(similarPLs, angles);
+        updateSimilarChart(similarPLs, angles);
     }
 }
 
