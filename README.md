@@ -67,3 +67,9 @@ BootStrap 4.0 Beta
 Chart.js
 
 Flask
+
+JQuery
+
+FIFA 17 Banner:
+
+![Fifa 17 Banner Image](http://images.performgroup.com/di/library/Goal_Mexico/f5/63/fifa-2017-portada_12xs5a1kyqmlq1fd4f6kd0c26v.jpg?t=-1111521698)
