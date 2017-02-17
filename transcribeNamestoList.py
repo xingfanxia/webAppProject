@@ -1,3 +1,5 @@
+# This function is used to create a giant list of the full names that will be used in the auto search complete function.
+# We only used the first 1000 players, which are also the strongest and most famous players, to improve the efficiency.
 # -*- coding: utf-8 -*-
 import csv
 

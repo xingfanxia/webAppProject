@@ -27,8 +27,5 @@ class apiTester(TestCase):
 		result = 0.804884909686284
 		self.assertTrue(api.CalculateCos(9, player1, player2) == result)
 
-	# def testAdvancedSearch(self):
-	# 	self.assertTrue(api.AdvancedSearch("age" , 30) != [])
-
 if __name__ == '__main__':
 	unittest.main()

@@ -1,17 +1,12 @@
 # API File containing all the HTML query parsing functions For WebApp
-'''1.What is the best player in xxx
-	2. Compare two player in XXX
-	3. Similar player suggestion
-	4. Get player attributes
+''' 1. Compare two player in XXX
+	2. Similar player suggestion
+	3. Get player attributes
 	'''
 import math, psycopg2, getpass, flask
 
-# link to database
 database = getpass.getuser()
 user = getpass.getuser()
-# password = getpass.getpass('Enter PostgreSQL password for user {}: '.format(user))
-
-# Login to the database
 try:
 	connection = psycopg2.connect(database=database, user=user, password='moon329tiger')
 except Exception as e:
@@ -81,7 +76,6 @@ def similarPlayer(player):
 
 	if playerAttr == -1:
 		return [-1, -1]
-	#print(playerAttr[0])
 	differenceDictionary = dict()
 	for ComparePlayer in playerList:
 		angle = CalculateCos(9, playerAttr[3:],ComparePlayer[3:])
@@ -100,9 +94,8 @@ def similarPlayer(player):
 
 def CalculateCos(N, vector1, vector2):
 	# This function is used to find the difference of two players using the Cos Theory
-	# It calculates the Cos vaule of the angle between N-dimision two vector made by player attributes
-	# and turn a number
-	# 
+	# It calculates the Cos vaule  of the angle between N-dimision two vector made by player attributes
+	# and turn a exaggrated number
 
 	dotProduct = 0
 	vectorLen1 = 0
@@ -122,7 +115,7 @@ def CalculateCos(N, vector1, vector2):
 	cosV1V2 = dotProduct / (vectorLength1*vectorLength2)
 	return cosV1V2**50
 
-# We are considering if we want this feature
+# We tried to have this feature but we decided not to.
 # @app.route('/AdvancedSearch/')
 # def AdvancedSearch(search, key):
 # 	# using keywords such as name,age, attribute to form a Sql quiry that
